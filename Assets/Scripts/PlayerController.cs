@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public float WalkSpeed = 1;
     public float speedH = 3.0f;
     public float speedV = 3.0f;
 
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = 
             Camera.transform.forward * Input.GetAxis("Vertical") +
             Camera.transform.right * Input.GetAxis("Horizontal");
+
+        moveDirection *= WalkSpeed * Time.deltaTime;
 
         // Apply gravity
         moveDirection.y = -1f;

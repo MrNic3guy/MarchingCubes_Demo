@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Terrain
+  m_Shader: {fileID: -6465566751694194690, guid: c13f8a5ce8f8f084da4328fe9ccb3f92,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_2131474B:
+        m_Texture: {fileID: 2800000, guid: 2a6c905bdc69f494785445b6d61e6c07, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_508B91E8:
+        m_Texture: {fileID: 2800000, guid: bafe8435443092746840d4571e94d8db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_3C014724_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c48020cc91a67fb4383939dc062f1dc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_75132BE0_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bafe8435443092746840d4571e94d8db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_565F612_Out_0:
+        m_Texture: {fileID: 2800000, guid: bafe8435443092746840d4571e94d8db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_8D978110_Out_0:
+        m_Texture: {fileID: 2800000, guid: 2a6c905bdc69f494785445b6d61e6c07, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Triplanar_CF65DA57_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 77c0d790aaf84cb45a0899798263712a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Triplanar_D0815D71_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c48020cc91a67fb4383939dc062f1dc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1274B912: 8.66
+    - Vector1_242CC598: 0.5
+    - Vector1_45D00E86: 0.11
+    - Vector1_77FDC1BB: 0.97
+    - Vector1_8563A27A: 2.93
+    - Vector1_A09E1CFC: 2.6
+    - Vector1_A984231F: 0
+    - Vector1_AC9B3F9B: 0.5
+    - Vector1_B3276B30: 0.8
+    - Vector1_B9E4F6AE: 1.8
+    - Vector1_CEA54398: 0.42
+    - Vector1_F6B2733C: 2.14
+    - Vector1_F819BE6B: 0.5
+    m_Colors:
+    - Color_11AF37C6: {r: 0.7264151, g: 0.6955767, b: 0.6955767, a: 0}
+    - Color_8A01C704: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_533C65FC: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_B129F63A: {r: 2.51, g: -1.74, b: 1, a: 1}

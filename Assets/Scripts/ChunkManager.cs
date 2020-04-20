@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ChunkManager : MonoBehaviour
 {
 
@@ -22,17 +23,30 @@ public class ChunkManager : MonoBehaviour
 
     public GameObject ChunkPrefab;
 
+    public Texture2D HeightMap;
+
     private Dictionary<Vector3, Chunk> _chunks = new Dictionary<Vector3, Chunk>();
 
     public static ChunkManager Instance;
-
     private void Awake()
     {
         Instance = this;
     }
 
+    public void Start()
+    {
+        StartCoroutine(GenerateFromFromHeightmap());
+    }
+
+    [ContextMenu("Generate Terrain")]
+    public void GenerateTerrain()
+    {
+        Instance = this;
+        StartCoroutine(GenerateFromNoise());
+    }
+
     // Start is called before the first frame update
-    IEnumerator Start()
+    public IEnumerator GenerateFromNoise()
     {
         Queue<Chunk> chunksToBuild = new Queue<Chunk>();
 
@@ -43,7 +57,7 @@ public class ChunkManager : MonoBehaviour
 
 
                 float perlin = Mathf.PerlinNoise(x * PerlinScale, z * PerlinScale);
-                float curHeight = (int)(perlin * 15);
+                float curHeight = (int)(perlin * 20) - Vector2.Distance(new Vector2(x,z), new Vector2(75,75)) * 0.1f;
                 curHeight = Mathf.Max(2, curHeight);
                 for (int y = 0; y < curHeight; y++)
                 {
@@ -54,14 +68,16 @@ public class ChunkManager : MonoBehaviour
                         chunksToBuild.Enqueue(curChunk);
                     }
                 }
-
-
             }
         }
 
+        int counter = 0;
+
         while(chunksToBuild.Count > 0)
         {
-            yield return new WaitForEndOfFrame();       
+            counter++;
+            if (counter % 16 == 0)
+                yield return new WaitForEndOfFrame();
             Chunk chunk = chunksToBuild.Dequeue();
             chunk.Rebuild();
         }
@@ -69,11 +85,46 @@ public class ChunkManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    // Start is called before the first frame update
+    public IEnumerator GenerateFromFromHeightmap()
     {
 
+        Queue<Chunk> chunksToBuild = new Queue<Chunk>();
+
+        for (int x = 0; x < HeightMap.width; x++)
+        {
+            for (int z = 0; z < HeightMap.height; z++)
+            {
+                float maxHeight = 20;
+
+                float height = HeightMap.GetPixel(x, z).r * maxHeight;
+                for (int y = 0; y < height; y++)
+                {
+                    Chunk curChunk = AddVoxel(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Random.Range(0.7f,1.0f));
+
+                    if (!chunksToBuild.Contains(curChunk))
+                    {
+                        chunksToBuild.Enqueue(curChunk);
+                    }
+                }
+            }
+        }
+
+        int counter = 0;
+
+        while (chunksToBuild.Count > 0)
+        {
+            counter++;
+            if (counter % 16 == 0)
+                yield return new WaitForEndOfFrame();
+            Chunk chunk = chunksToBuild.Dequeue();
+            chunk.Rebuild();
+        }
+
+
     }
+
+
 
     public float GetVoxel(Vector3 worldPoint)
     {
